@@ -1,0 +1,27 @@
+(rule
+ (targets aux.cmx)
+ (deps (:aux aux.ml) %{workspace_root}/vlt.install)
+ (action
+  (run
+   ocamlfind ocamlopt -for-pack Pack -c %{aux}
+    -package vlt.ppx,vlt -ppxopt "vlt.ppx,-for-pack Pack"))
+)
+
+(rule
+ (targets main.cmx)
+ (deps (:main main.ml) aux.cmx %{workspace_root}/vlt.install)
+ (action
+  (run
+   ocamlfind ocamlopt -for-pack Pack -c %{main}
+    -package vlt.ppx,vlt -ppxopt "vlt.ppx,-for-pack Pack"))
+)
+
+(rule
+ (target main.exe)
+ (deps aux.cmx main.cmx)
+ (action (run ocamlfind ocamlopt -o %{target} %{deps} -package unix,dynlink,vlt -linkpkg))
+)
+
+(cram
+ (deps main.exe)
+)

@@ -1,0 +1,6 @@
+(executable
+ (name simple)
+ (preprocess
+  (pps vlt.ppx -- -level WARN)
+ )
+)

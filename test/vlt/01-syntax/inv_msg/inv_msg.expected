@@ -1,0 +1,5 @@
+File "inv_msg.ml", line 1, characters 21-22:
+1 | let () = [%debug_log 0]
+                         ^
+Error: This expression has type int but an expression was expected of type
+         string

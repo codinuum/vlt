@@ -1,0 +1,1 @@
+let () = [%LOG [%X] "start"]

@@ -1,0 +1,6 @@
+(executable
+ (name daikon)
+ (preprocess
+  (pps vlt.ppx)
+ )
+)

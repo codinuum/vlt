@@ -1,0 +1,18 @@
+(executable
+ (name ppx)
+ (modules ppx)
+ (libraries vlt.ppx ppxlib)
+)
+
+(rule
+ (target inv_level.out)
+ (deps (:ppx ppx.exe) (:in inv_level.ml))
+ (action
+  (system "ocamlfind ocamlc -color never -ppx ./%{ppx} -c %{in} -package vlt 2> %{target} || true")
+ )
+)
+
+(rule
+ (alias runtest)
+ (action (diff inv_level.expected inv_level.out))
+)

@@ -1,0 +1,4 @@
+File "inv_name.ml", line 1, characters 34-35:
+1 | let () = [%debug_log "msg" [%NAME 0]]
+                                      ^
+Error: string expected

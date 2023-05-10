@@ -1,0 +1,4 @@
+File "inv_level.ml", line 1, characters 15-19:
+1 | let () = [%LOG [%X] "start"]
+                   ^^^^
+Error: invalid log level: X

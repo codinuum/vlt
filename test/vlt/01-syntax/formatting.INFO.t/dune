@@ -1,0 +1,6 @@
+(executable
+ (name formatting)
+ (preprocess
+  (pps vlt.ppx -- -level INFO)
+ )
+)

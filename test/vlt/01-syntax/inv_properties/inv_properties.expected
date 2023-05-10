@@ -1,0 +1,5 @@
+File "inv_properties.ml", line 1, characters 40-41:
+1 | let () = [%debug_log "msg" [%PROPERTIES 0]]
+                                            ^
+Error: This expression has type int but an expression was expected of type
+         (string * string) list
