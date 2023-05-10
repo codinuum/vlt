@@ -1,0 +1,20 @@
+(library
+ (public_name vlt)
+ (name vlt)
+ (modules (:standard \ vltThread))
+)
+
+(library
+ (public_name vlt.mt)
+ (name vlt_mt)
+ (libraries threads.posix vlt)
+ (modules vltThread)
+)
+
+(ocamllex configLexer)
+(ocamlyacc configParser)
+
+(rule
+ (target version.ml)
+ (action (write-file %{target} "let value = \"%{read:../BOLT_VERSION}\""))
+)

@@ -1,0 +1,11 @@
+(library
+ (public_name vlt.ppx)
+ (name vlt_ppx)
+ (kind ppx_rewriter)
+ (modules vlt_ppx)
+ (instrumentation.backend
+  (ppx vlt.ppx))
+ (libraries ppxlib)
+ (preprocess
+  (pps ppxlib.metaquot))
+)
