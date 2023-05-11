@@ -24,7 +24,7 @@
 Unlike Volt, Vlt relies on ppx instead of camlp4 to preprocess source code.")
  (depends
   (ocaml (>= 4.14))
-  (dune (>= 3.7))
+  dune
   (ppxlib (>= 0.29))
   threads.posix
  )
