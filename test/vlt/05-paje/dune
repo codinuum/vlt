@@ -1,16 +1,16 @@
 (rule
- (targets main.cmx)
+ (targets main.cmo)
  (deps (:src main.ml) %{workspace_root}/vlt.install)
  (action
   (run
-   ocamlfind ocamlopt -thread -for-pack Pack -c %{src}
+   ocamlfind ocamlc -thread -for-pack Pack -c %{src}
     -package vlt.ppx,vlt -ppxopt "vlt.ppx,-for-pack Pack"))
 )
 
 (rule
  (target main.exe)
- (deps main.cmx)
- (action (run ocamlfind ocamlopt -o %{target} %{deps} -thread -package unix,dynlink,vlt -linkpkg))
+ (deps main.cmo)
+ (action (run ocamlfind ocamlc -o %{target} %{deps} -thread -package unix,dynlink,vlt -linkpkg))
 )
 
 (cram

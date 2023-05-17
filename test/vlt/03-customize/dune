@@ -1,32 +1,32 @@
 (rule
- (targets custom.cmx)
+ (targets custom.cmo)
  (deps (:src custom.ml) %{workspace_root}/vlt.install)
  (action
-  (run ocamlfind ocamlopt -for-pack Pack -c %{src} -package vlt.ppx,vlt))
+  (run ocamlfind ocamlc -for-pack Pack -c %{src} -package vlt.ppx,vlt))
 )
 
 (rule
- (targets aux.cmx)
+ (targets aux.cmo)
  (deps (:src aux.ml) %{workspace_root}/vlt.install)
  (action
   (run
-   ocamlfind ocamlopt -for-pack Pack -c %{src}
+   ocamlfind ocamlc -for-pack Pack -c %{src}
     -package vlt.ppx,vlt -ppxopt "vlt.ppx,-for-pack Pack"))
 )
 
 (rule
- (targets main.cmx)
- (deps (:src main.ml) aux.cmx %{workspace_root}/vlt.install)
+ (targets main.cmo)
+ (deps (:src main.ml) aux.cmo %{workspace_root}/vlt.install)
  (action
   (run
-   ocamlfind ocamlopt -for-pack Pack -c %{src}
+   ocamlfind ocamlc -for-pack Pack -c %{src}
     -package vlt.ppx,vlt -ppxopt "vlt.ppx,-for-pack Pack"))
 )
 
 (rule
  (target main.exe)
- (deps custom.cmx aux.cmx main.cmx)
- (action (run ocamlfind ocamlopt -o %{target} %{deps} -package unix,dynlink,vlt -linkpkg))
+ (deps custom.cmo aux.cmo main.cmo)
+ (action (run ocamlfind ocamlc -o %{target} %{deps} -package unix,dynlink,vlt -linkpkg))
 )
 
 (cram
