@@ -2,12 +2,11 @@
 
 (name vlt)
 
-(version 0.1)
+;(version 0.1)
 
 (generate_opam_files true)
 
-(source
- (github codinuum/vlt))
+(source (github codinuum/vlt))
 
 (authors "Xavier Clerc" "Codinuum")
 
