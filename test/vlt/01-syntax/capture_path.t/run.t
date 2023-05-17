@@ -1,5 +1,5 @@
 We can instrument with vlt.ppx:
-  $ dune describe pp test.ml
+  $ dune describe pp test.ml 2> /dev/null
   [@@@ocaml.ppx.context
     {
       tool_name = "ppx_driver";

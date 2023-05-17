@@ -1,5 +1,5 @@
 Instrument with vlt.ppx:
-  $ dune describe pp formatting.ml
+  $ dune describe pp formatting.ml 2> /dev/null
   [@@@ocaml.ppx.context
     {
       tool_name = "ppx_driver";

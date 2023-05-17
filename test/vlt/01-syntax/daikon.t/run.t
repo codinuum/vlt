@@ -1,5 +1,5 @@
 Instrument with vlt.ppx:
-  $ dune describe pp --instrument-with vlt.ppx daikon.ml
+  $ dune describe pp daikon.ml 2> /dev/null
   [@@@ocaml.ppx.context
     {
       tool_name = "ppx_driver";
