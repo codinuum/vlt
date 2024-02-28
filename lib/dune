@@ -2,6 +2,7 @@
  (public_name vlt)
  (name vlt)
  (modules (:standard \ vltThread))
+ (libraries unix dynlink)
 )
 
 (library
