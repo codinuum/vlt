@@ -1,22 +1,5 @@
 Instrument with vlt.ppx:
-  $ dune describe pp simple.ml 2> /dev/null
-  [@@@ocaml.ppx.context
-    {
-      tool_name = "ppx_driver";
-      include_dirs = [];
-      load_path = [];
-      open_modules = [];
-      for_package = None;
-      debug = false;
-      use_threads = false;
-      use_vmthreads = false;
-      recursive_types = false;
-      principal = false;
-      transparent_modules = false;
-      unboxed_types = false;
-      unsafe_string = false;
-      cookies = []
-    }]
+  $ dune describe pp simple.ml 2> /dev/null | tail -n 29
   let () = Vlt.Logger.prepare "Simple"
   let main () =
     ();
