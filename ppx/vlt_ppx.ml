@@ -548,8 +548,19 @@ module StructureItem = struct
             Pexp_letmodule(m, self#module_expr ctxt me, map_expr e)
         end
         | Pexp_let(r, vbl, e) -> Pexp_let(r, List.map (self#value_binding ctxt) vbl, map_expr e)
-        | Pexp_function c -> Pexp_function (self#cases ctxt c)
-        | Pexp_fun(a, e_opt, p, e) -> Pexp_fun(a, map_expr_opt e_opt, p, map_expr e)
+        | Pexp_function (params, constraint_, body) -> (
+          let params = List.map (function
+            | { pparam_desc = Pparam_val (lbl, e_opt, pat); _ } as p ->
+              { p with pparam_desc = Pparam_val (lbl, map_expr_opt e_opt, pat) }
+            | v -> v
+          ) params
+          in
+          match body with
+          | Pfunction_body expr ->
+            Pexp_function (params, constraint_, Pfunction_body (map_expr expr))
+          | Pfunction_cases (cases, locs, attrs) ->
+            Pexp_function (params, constraint_, Pfunction_cases (self#cases ctxt cases, locs, attrs))
+        )
         | Pexp_apply(e, al) -> Pexp_apply(map_expr e, List.map (fun(l, e) -> l, map_expr e) al)
         | Pexp_match(e, c) -> Pexp_match(map_expr e, self#cases ctxt c)
         | Pexp_try(e, c) -> Pexp_try(map_expr e, self#cases ctxt c)
