@@ -7,6 +7,9 @@ class foo = object
       x + 1
     in
     y
+
+  initializer
+    [%debug_log "init"];
 end
 
 module A = struct
@@ -26,6 +29,9 @@ module A = struct
             cmp x y
         end) in
         (module S : Set.S with type elt = s)
+
+      initializer
+        [%debug_log "init"];
     end
 
   end
@@ -43,6 +49,9 @@ class foo = object
       x + 1
     in
     y
+
+  initializer
+    [%debug_log "init"];
 end
 ]
 
@@ -64,6 +73,9 @@ module A = struct
             cmp x y
         end) in
         (module S : Set.S with type elt = s)
+
+      initializer
+        [%debug_log "init"];
     end
 
   end

@@ -530,6 +530,10 @@ module StructureItem = struct
             let ctxt = ("#"^mname) :: ctxt in
             Pcf_method({ txt = mname; loc }, priv, Cfk_concrete(ovrd, self#expression ctxt expr))
         end
+        | Pcf_initializer expr -> begin
+            let ctxt = "#<init>" :: ctxt in
+            Pcf_initializer (self#expression ctxt expr)
+        end
         | _ -> cfield_desc
 
       method! expression_desc ctxt expr_desc =
