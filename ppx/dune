@@ -1,3 +1,15 @@
+
+(rule
+ (deps (:< vlt_ppx.ml.cppo))
+ (targets vlt_ppx.ml)
+ (action
+  (with-stdout-to
+   %{targets}
+   (run %{bin:cppo} -V "PPXLIB:%{version:ppxlib}" %{<})
+  )
+ )
+)
+
 (library
  (public_name vlt.ppx)
  (name vlt_ppx)

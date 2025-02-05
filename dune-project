@@ -2,7 +2,7 @@
 
 (name vlt)
 
-;(version 0.1)
+;(version 0.2)
 
 (generate_opam_files true)
 
@@ -22,7 +22,7 @@
  (description "Vlt is yet another variant of Bolt logging tool derived from Volt.
 Unlike Volt, Vlt relies on ppx instead of camlp4 to preprocess source code.")
  (depends
-  (ocaml (>= 4.14))
+  (ocaml (and (>= 4.14) (<= 5.3)))
   dune
   (ppxlib (>= 0.29))
   (ocamlfind :with-test)
