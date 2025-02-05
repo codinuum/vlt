@@ -22,7 +22,7 @@
  (description "Vlt is yet another variant of Bolt logging tool derived from Volt.
 Unlike Volt, Vlt relies on ppx instead of camlp4 to preprocess source code.")
  (depends
-  (ocaml (and (>= 4.14) (<= 5.3)))
+  (ocaml (>= 4.14))
   dune
   (ppxlib (>= 0.29))
   (cppo :build)
