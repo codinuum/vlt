@@ -1,1 +1,1 @@
-let () = [%debug_log "msg" [%EXCEPTION 0]]
+let () = [%debug_log "msg" [%EXCEPTION 10]]

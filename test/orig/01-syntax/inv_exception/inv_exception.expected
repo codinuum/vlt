@@ -1,5 +1,5 @@
-File "inv_exception.ml", line 1, characters 42-43:
-1 | let () = [%LOG [%DEBUG] "msg" [%EXCEPTION 0]]
-                                              ^
+File "inv_exception.ml", line 1, characters 42-44:
+1 | let () = [%LOG [%DEBUG] "msg" [%EXCEPTION 10]]
+                                              ^^
 Error: This expression has type int but an expression was expected of type
          exn

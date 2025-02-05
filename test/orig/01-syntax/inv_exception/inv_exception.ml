@@ -1,1 +1,1 @@
-let () = [%LOG [%DEBUG] "msg" [%EXCEPTION 0]]
+let () = [%LOG [%DEBUG] "msg" [%EXCEPTION 10]]

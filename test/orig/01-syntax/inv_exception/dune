@@ -10,7 +10,7 @@
  (action
   (progn
    (system "ocamlfind ocamlc -color never -ppx ./%{ppx} -c %{in} -package vlt 2> %{target} || true")
-   (system "sed -i -e 's/\"int\"/int/g;s/\"string\"/string/g;s/\"exn\"/exn/g' inv_exception.out")
+   (system "sed -i -e 's/The constant \"10\"/This expression/;s/\"int\"/int/g;s/\"string\"/string/g;s/\"exn\"/exn/g' inv_exception.out")
   )
  )
 )
