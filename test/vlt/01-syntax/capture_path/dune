@@ -15,6 +15,13 @@
 )
 
 (rule
+ (enabled_if (>= %{ocaml_version} 5.2))
  (alias runtest)
  (action (diff capture_path.expected capture_path.out))
+)
+
+(rule
+ (enabled_if (< %{ocaml_version} 5.2))
+ (alias runtest)
+ (action (diff capture_path.expected.4.14 capture_path.out))
 )

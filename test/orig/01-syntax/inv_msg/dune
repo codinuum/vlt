@@ -6,7 +6,7 @@
 
 (rule
  (target inv_msg.out)
- (deps (:ppx ppx.exe) (:in inv_msg.ml))
+ (deps (:ppx ppx.exe) (:in inv_msg.ml) %{workspace_root}/vlt.install)
  (action
   (progn
    (system "ocamlfind ocamlc -color never -ppx ./%{ppx} -c %{in} -package vlt 2> %{target} || true")
