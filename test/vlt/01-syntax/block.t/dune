@@ -1,4 +1,0 @@
-(executable
- (name test)
- (preprocess
-  (pps vlt.ppx)))

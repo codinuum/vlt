@@ -1,0 +1,26 @@
+let () = Vlt.Logger.prepare "Formatting"
+let () =
+  if Vlt.Logger.check_level "Formatting" Vlt.Level.FATAL
+  then
+    Vlt.Logger.logf "Formatting" Vlt.Level.FATAL ~file:"formatting.ml"
+      ~line:4 ~column:2 ~properties:[] ~error:None "no parameter"
+  else ();
+  ();
+  ();
+  ();
+  ();
+  ();
+  ()
+let id x = x
+let () =
+  if Vlt.Logger.check_level "Formatting" Vlt.Level.FATAL
+  then
+    Vlt.Logger.logf "Formatting" Vlt.Level.FATAL ~file:"formatting.ml"
+      ~line:15 ~column:2 ~properties:[] ~error:None "no parameter"
+  else ();
+  ();
+  ();
+  ();
+  ();
+  ();
+  ()

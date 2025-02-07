@@ -1,0 +1,125 @@
+(executable
+ (name ppx)
+ (modules ppx)
+ (libraries vlt.ppx ppxlib)
+)
+
+(rule
+ (target simple.TRACE.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level TRACE" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.DEBUG.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level DEBUG" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.INFO.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level INFO" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.WARN.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level WARN" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.ERROR.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level ERROR" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.FATAL.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level FATAL" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.NONE.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level NONE" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target simple.out)
+ (deps (:ppx ppx.exe) (:src simple.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx ./%{ppx} -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.TRACE.expected simple.TRACE.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.DEBUG.expected simple.DEBUG.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.INFO.expected simple.INFO.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.WARN.expected simple.WARN.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.ERROR.expected simple.ERROR.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.FATAL.expected simple.FATAL.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.NONE.expected simple.NONE.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff simple.expected simple.out))
+)

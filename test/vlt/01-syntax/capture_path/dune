@@ -1,0 +1,20 @@
+(executable
+ (name ppx)
+ (modules ppx)
+ (libraries vlt.ppx ppxlib)
+)
+
+(rule
+ (target capture_path.out)
+ (deps (:ppx ppx.exe) (:src capture_path.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx ./%{ppx} -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (alias runtest)
+ (action (diff capture_path.expected capture_path.out))
+)

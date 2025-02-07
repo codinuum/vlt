@@ -1,0 +1,125 @@
+(executable
+ (name ppx)
+ (modules ppx)
+ (libraries vlt.ppx ppxlib)
+)
+
+(rule
+ (target formatting.TRACE.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level TRACE" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.DEBUG.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level DEBUG" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.INFO.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level INFO" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.WARN.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level WARN" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.ERROR.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level ERROR" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.FATAL.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level FATAL" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.NONE.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx "./%{ppx} -level NONE" -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (target formatting.out)
+ (deps (:ppx ppx.exe) (:src formatting.ml) %{workspace_root}/vlt.install)
+ (action
+  (with-stderr-to %{target}
+   (run ocamlfind ocamlc -dsource -ppx ./%{ppx} -c %{src} -package vlt)
+  )
+ )
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.TRACE.expected formatting.TRACE.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.DEBUG.expected formatting.DEBUG.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.INFO.expected formatting.INFO.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.WARN.expected formatting.WARN.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.ERROR.expected formatting.ERROR.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.FATAL.expected formatting.FATAL.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.NONE.expected formatting.NONE.out))
+)
+
+(rule
+ (alias runtest)
+ (action (diff formatting.expected formatting.out))
+)

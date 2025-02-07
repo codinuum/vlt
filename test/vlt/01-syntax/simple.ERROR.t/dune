@@ -1,6 +1,0 @@
-(executable
- (name simple)
- (preprocess
-  (pps vlt.ppx -- -level ERROR)
- )
-)
