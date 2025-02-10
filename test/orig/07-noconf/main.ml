@@ -1,7 +1,7 @@
 let main () =
   let len = Array.length Sys.argv in
   for i = 1 to pred len do
-    Aux.f2 len Sys.argv.(i)
+    Aux_.f2 len Sys.argv.(i)
   done
 
 let () =

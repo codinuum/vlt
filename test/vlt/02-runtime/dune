@@ -1,6 +1,6 @@
 (rule
- (targets aux.cmo)
- (deps (:aux aux.ml) %{workspace_root}/vlt.install)
+ (targets aux_.cmo)
+ (deps (:aux aux_.ml) %{workspace_root}/vlt.install)
  (action
   (run
    ocamlfind ocamlc -for-pack Pack -c %{aux}
@@ -9,7 +9,7 @@
 
 (rule
  (targets main.cmo)
- (deps (:main main.ml) aux.cmo %{workspace_root}/vlt.install)
+ (deps (:main main.ml) aux_.cmo %{workspace_root}/vlt.install)
  (action
   (run
    ocamlfind ocamlc -for-pack Pack -c %{main}
@@ -18,7 +18,7 @@
 
 (rule
  (target main.exe)
- (deps aux.cmo main.cmo)
+ (deps aux_.cmo main.cmo)
  (action (run ocamlfind ocamlc -o %{target} %{deps} -package unix,dynlink,vlt -linkpkg))
 )
 
