@@ -553,7 +553,7 @@ module StructureItem = struct
         end
         | Pexp_let(r, vbl, e) -> Pexp_let(r, List.map (self#value_binding ctxt) vbl, map_expr e)
 
-#if PPXLIB_VERSION >= (99, 99, 99)
+#if PPXLIB_VERSION >= (0, 36, 0)
         | Pexp_function (params, constraint_, body) -> begin
             let params =
               List.map
